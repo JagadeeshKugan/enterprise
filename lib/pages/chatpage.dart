@@ -97,6 +97,7 @@ class _ChatPageState extends State<ChatPage> {
               width: double.infinity,
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.pink, width: 2),
+                borderRadius: BorderRadius.circular(10),
                 color: dark,
               ),
               child: Row(
@@ -133,11 +134,15 @@ class _ChatPageState extends State<ChatPage> {
                     ),
                     label: Text(
                       "Send",
-                      style: TextStyle(color: daak),
+                      style:
+                          TextStyle(color: daak, fontWeight: FontWeight.bold),
                     ),
                     style: ButtonStyle(
                         backgroundColor: MaterialStatePropertyAll(Colors.pink)),
                   ),
+                  const SizedBox(
+                    width: 5,
+                  )
                 ],
               ),
             ),

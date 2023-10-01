@@ -1,4 +1,8 @@
+import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
+import 'package:enterpriser_app/model/predict.dart';
+import 'package:enterpriser_app/support/api.dart';
 import 'package:enterpriser_app/widgets/snackbar.dart';
 import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
 import 'package:enterpriser_app/constants.dart';
@@ -88,6 +92,7 @@ class _EnterpriseState extends State<Enterprise> {
             const SizedBox(
               height: 20,
             ),
+            pred(),
             const SizedBox(
               height: 20,
             ),
@@ -102,18 +107,87 @@ class _EnterpriseState extends State<Enterprise> {
   Widget product() {
     return Center(
       child: TextButton.icon(
-          style: ButtonStyle(
+          style: const ButtonStyle(
             backgroundColor: MaterialStatePropertyAll(Colors.pink),
           ),
           onPressed: () {},
-          icon: Icon(
-            Icons.workspaces,
-            color: Colors.white,
+          icon: const Icon(
+            Icons.work,
+            color: Colors.yellow,
           ),
-          label: Text(
+          label: const Text(
             "Product",
             style: TextStyle(color: Colors.white),
           )),
+    );
+  }
+
+  Widget pred() {
+    double? pred;
+    String? num;
+    return Container(
+      height: 100,
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              const Text(
+                "Product Price: ₹100",
+                style: TextStyle(
+                  color: Colors.pink,
+                  fontSize: 20,
+                ),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              TextButton(
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStatePropertyAll(darker),
+                      shadowColor: MaterialStatePropertyAll(Colors.pink)),
+                  onPressed: () async {
+                    //
+                    var json =
+                        PredModel(preass: 22, preavg: 19, avg: 23, latest: 24)
+                            .FJson();
+                    var reply = await API().fetchData(json);
+                    log("log" + reply.toString());
+
+                    var jsons = jsonDecode(reply);
+                    pred = jsons["prediction"];
+                    num = pred?.toStringAsFixed(2);
+                    log(num.toString());
+                    setState(() {});
+                  },
+                  child: const Text(
+                    "predict",
+                    style: TextStyle(
+                      color: Colors.yellow,
+                      fontSize: 20,
+                    ),
+                  ))
+            ],
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: 40,
+            color: darker,
+            child: Center(
+              child: Text(
+                "Predicted value: " + num.toString(),
+                style: const TextStyle(
+                  color: Colors.yellow,
+                  fontSize: 20,
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 
@@ -283,12 +357,14 @@ class _EnterpriseState extends State<Enterprise> {
           border: Border.all(color: darker, width: 3),
           borderRadius: BorderRadius.all(Radius.circular(10))),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SizedBox(
             height: 10,
           ),
           SizedBox(
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
                   "Vision :",

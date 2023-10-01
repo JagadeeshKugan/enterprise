@@ -1,6 +1,4 @@
 import 'dart:developer';
-import 'dart:ui';
-
 import 'package:enterpriser_app/pages/Enterprise.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
@@ -39,12 +37,15 @@ class _HomeState extends State<Home> {
   TextEditingController searchtext = TextEditingController();
   final Shader linearGradient = LinearGradient(
     colors: <Color>[
-      Color(0xffDA44bb),
-      dark4,
+      Colors.white,
+      Colors.pink,
       pink1,
+      daak,
+      dark4,
       Color(0xff8921aa),
+      Color(0xffDA44bb),
     ],
-  ).createShader(Rect.fromLTWH(0.0, 2.0, 200.0, 70.0));
+  ).createShader(Rect.fromLTWH(0.0, 2.0, 150.0, 70.0));
   final FocusNode _Focus = FocusNode();
 
   @override
@@ -63,16 +64,6 @@ class _HomeState extends State<Home> {
             backgroundColor: Colors.transparent,
             appBar: AppBar(
               backgroundColor: dark,
-              leading: IconButton.filled(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStatePropertyAll(daak)),
-                  icon: Icon(
-                    Icons.arrow_back,
-                    color: Colors.pink,
-                  )),
               title: GradientText(
                 "Home",
                 colors: [pink1, pink2, Colors.pink],
@@ -207,7 +198,7 @@ class _HomeState extends State<Home> {
                           Map a = Enterprises[index];
                           return Column(children: [
                             SizedBox(
-                              height: 100,
+                              height: 150,
                               width: MediaQuery.of(context).size.width * .95,
                               child: ListTile(
                                 contentPadding:
@@ -233,7 +224,7 @@ class _HomeState extends State<Home> {
                                       a["Owner"],
                                   style: const TextStyle(
                                     fontSize: 12,
-                                    color: Colors.white,
+                                    color: Colors.yellow,
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),

@@ -38,6 +38,7 @@ dependencies:
   shimmer: ^3.0.0
   simple_gradient_text: ^1.2.4
   simple_icons: ^7.10.0
+  http:
   
   url_launcher: ^6.1.14
 dev_dependencies:
