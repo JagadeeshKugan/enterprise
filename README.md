@@ -1,4 +1,4 @@
-# enterpriser_app
+# enterpriser_connect
 
 A new Flutter project.
 
