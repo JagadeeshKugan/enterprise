@@ -15,7 +15,7 @@ class API {
     //sign out
   }
 
-  String url = 'http://192.168.51.106:8000';
+  String url = 'http://localhost:8000';
   String end = "/predict";
 
   Future fetchData(Map<String, dynamic> js) async {
